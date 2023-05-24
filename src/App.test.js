@@ -56,9 +56,8 @@ describe("render App", () => {
 
   it("render Vanilla icecream UNDER the dessert section", () => {
     render(<App/>)
-    // eslint-disable-next-line testing-library/no-node-access
-    const dessertSection = within(screen.getByText("Dessert").parentNode)
-    const vanilla = dessertSection.getByText("Vanilla icecream")
+    const dessertSection = screen.getByLabelText("dessertSection")
+    const vanilla = within(dessertSection).getByText("Vanilla icecream")
     expect(vanilla).toBeInTheDocument()
   })
 

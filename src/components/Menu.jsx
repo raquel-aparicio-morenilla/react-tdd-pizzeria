@@ -24,9 +24,13 @@ export function Menu() {
 
     return <>
         <h1>Menu</h1>
-        <h2>Pizza</h2>
-        {pizzaList && pizzaList.map(pizza => <MenuItem key={pizza.name} item={pizza} itemType={pizzaType}/>)}
-        <h2>Dessert</h2>
-        {dessertList && dessertList.map(dessert => <MenuItem key={dessert.name} item={dessert} itemType={dessertType}/>)}
+        <div aria-label={"pizzaSection"}>
+            <h2>Pizza</h2>
+            {pizzaList && pizzaList.map(pizza => <MenuItem key={pizza.name} item={pizza} itemType={pizzaType}/>)}
+        </div>
+        <div aria-label={"dessertSection"}>
+            <h2>Dessert</h2>
+            {dessertList && dessertList.map(dessert => <MenuItem key={dessert.name} item={dessert} itemType={dessertType}/>)}
+        </div>
     </>;
 }
