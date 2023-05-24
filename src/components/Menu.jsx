@@ -1,13 +1,17 @@
 import {useMenu} from "../hooks/useMenu";
+import {useState} from "react";
 
 export const pizzaType = "pizza"
 export const dessertType = "dessert"
 
 function MenuItem({item, itemType}) {
+    const [quantity, setQuantity] = useState(0)
     const altText = item.name + " " + itemType;
+
     return <div>
         <img src={"assets/" + item.imageName} alt={altText} width={50} height={50}/>
         {item.name}
+        <input type="number" min={0} value={quantity}/>
     </div>;
 }
 
@@ -17,9 +21,7 @@ export function Menu() {
     return <>
         <h1>Menu</h1>
         <h2>Pizza</h2>
-        {
-            pizzaList && pizzaList.map(pizza => <MenuItem key={pizza.name} item={pizza} itemType={pizzaType}/>)
-        }
+        {pizzaList && pizzaList.map(pizza => <MenuItem key={pizza.name} item={pizza} itemType={pizzaType}/>)}
         <h2>Dessert</h2>
         {dessertList && dessertList.map(dessert => <MenuItem key={dessert.name} item={dessert} itemType={dessertType}/>)}
     </>;

@@ -88,6 +88,6 @@ describe("render App", () => {
     render(<App/>)
     const spinnerList = screen.getAllByRole("spinbutton")
     expect(spinnerList).toHaveLength(3)
-    spinnerList.forEach(spinner => expect(spinner.value).toBe(0))
+    spinnerList.forEach(spinner => expect(spinner.value).toBe("0"))
   })
 });
