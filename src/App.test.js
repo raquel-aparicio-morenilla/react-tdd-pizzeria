@@ -120,5 +120,12 @@ describe("render App", () => {
       const buttonPlaceOrder = screen.getByRole("button", {name: "Place your order"})
       expect(buttonPlaceOrder).toBeInTheDocument()
     })
+
+    it("render checkbox for Terms and Conditions, initially unchecked", () => {
+      render(<App/>)
+      const checkboxTandC = screen.getByRole("checkbox",  {name: "Agree to Terms and Conditions"})
+      expect(checkboxTandC).toBeInTheDocument()
+      expect(checkboxTandC).not.toBeChecked()
+    })
   })
 });
