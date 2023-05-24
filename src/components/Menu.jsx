@@ -1,17 +1,4 @@
-import {useEffect, useState} from "react";
-
-function getPizzaList() {
-    return ["Carbonara", "Barbeque"];
-}
-
-function useMenu() {
-    const [pizzaList, setPizzaList] = useState([])
-
-    useEffect(() => {
-        setPizzaList(getPizzaList());
-    }, [])
-    return pizzaList;
-}
+import {useMenu} from "../hooks/useMenu";
 
 export function Menu() {
     const pizzaList = useMenu();
