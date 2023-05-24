@@ -6,6 +6,7 @@ function App() {
     <div className="App">
         <Menu/>
         Order Summary
+        <button>Place your order</button>
     </div>
   );
 }
