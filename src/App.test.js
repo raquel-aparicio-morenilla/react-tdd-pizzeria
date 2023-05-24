@@ -4,8 +4,8 @@ import App from './App';
 jest.mock("./gateways/menuGateway", () => ({
       getPizzaList : () => (
         [
-          {name: "Carbonara"},
-          {name: "Barbeque"}
+          {name: "Carbonara", imageName: "Carbonara.png"},
+          {name: "Barbeque", imageName: "Barbeque.png"}
         ]
       ),
       getDessertList : () => (
@@ -68,5 +68,9 @@ describe("render App", () => {
     const altList = imageList.map(pizzaImage => pizzaImage.alt)
     expect(altList).toContain("Carbonara pizza")
     expect(altList).toContain("Barbeque pizza")
+    expect(altList).toEqual(expect.arrayContaining(["Carbonara pizza", "Barbeque pizza"]))
+
+    const srcList = imageList.map(pizzaImage => pizzaImage.src)
+    expect(srcList).toEqual(expect.arrayContaining([expect.stringContaining("assets/Carbonara.png"), expect.stringContaining("assets/Barbeque.png")]))
   })
 });
