@@ -7,4 +7,10 @@ describe("render App", () => {
     const menu = screen.getByText("Menu");
     expect(menu).toBeInTheDocument();
   });
+
+  it("render Pizza under Menu", () => {
+    render(<App/>)
+    const pizzaSection = screen.getByText("Pizza")
+    expect(pizzaSection).toBeInTheDocument()
+  })
 });
