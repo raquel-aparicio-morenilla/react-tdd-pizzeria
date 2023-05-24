@@ -1,4 +1,4 @@
-import {render, screen} from '@testing-library/react';
+import {render, screen, within} from '@testing-library/react';
 import App from './App';
 
 describe("render App", () => {
@@ -35,6 +35,14 @@ describe("render App", () => {
   it("render Vanilla icecream on the dessert section", () => {
     render(<App/>)
     const vanilla = screen.getByText("Vanilla icecream")
+    expect(vanilla).toBeInTheDocument()
+  })
+
+  it("render Vanilla icecream UNDER the dessert section", () => {
+    render(<App/>)
+    // eslint-disable-next-line testing-library/no-node-access
+    const dessertSection = within(screen.getByText("Dessert").parentNode)
+    const vanilla = dessertSection.getByText("Vanilla icecream")
     expect(vanilla).toBeInTheDocument()
   })
 });
