@@ -108,9 +108,17 @@ describe("render App", () => {
     })
   })
 
-  it("render Summary", () => {
-    render(<App/>)
-    const summary = screen.getByText("Order Summary")
-    expect(summary).toBeInTheDocument()
+  describe("render Order Summary", () =>{
+    it("render Summary", () => {
+      render(<App/>)
+      const summary = screen.getByText("Order Summary")
+      expect(summary).toBeInTheDocument()
+    })
+
+    it("render button to place order", () => {
+      render(<App/>)
+      const buttonPlaceOrder = screen.getByRole("button", {name: "Place your order"})
+      expect(buttonPlaceOrder).toBeInTheDocument()
+    })
   })
 });
