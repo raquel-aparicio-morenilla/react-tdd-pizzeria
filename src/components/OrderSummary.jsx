@@ -21,7 +21,7 @@ export function OrderSummary() {
         <h1>Order Summary</h1>
         {isOrderConfirmed && <div>Your order has been confirmed</div>}
         <div>
-            <button disabled={!isCheckboxChecked} onClick={handleButtonClick}>Place your order</button>
+            <button disabled={!isCheckboxChecked || isOrderConfirmed} onClick={handleButtonClick}>Place your order</button>
         </div>
         <div>
             <input type={"checkbox"} aria-labelledby={"tac"} checked={isCheckboxChecked} onChange={handleCheckboxChange}/>
