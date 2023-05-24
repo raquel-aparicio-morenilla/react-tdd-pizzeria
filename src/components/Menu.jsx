@@ -13,7 +13,7 @@ function MenuItem({item, itemType}) {
     }
 
     return <div>
-        <img src={"assets/" + item.imageName} alt={altText} width={50} height={50}/>
+        <img src={item.imagePath} alt={altText} width={50} height={50}/>
         {item.name}
         <input type="number" min={0} value={quantity} aria-label={altText} onChange={handleSpinnerChange}/>
     </div>;
