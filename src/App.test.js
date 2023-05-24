@@ -83,4 +83,11 @@ describe("render App", () => {
     const srcList= imageList.map(image => image.src)
     expect(srcList).toEqual([expect.stringContaining("assets/VanillaIcecream.png")])
   })
+
+  it("renders spinners for the menu items with an initial value of 0", () => {
+    render(<App/>)
+    const spinnerList = screen.getAllByRole("spinbutton")
+    expect(spinnerList).toHaveLength(3)
+    spinnerList.forEach(spinner => expect(spinner.value).toBe(0))
+  })
 });
