@@ -127,5 +127,13 @@ describe("render App", () => {
       expect(checkboxTandC).toBeInTheDocument()
       expect(checkboxTandC).not.toBeChecked()
     })
+
+    it("render button disabled if checkbox is not checked", () => {
+      render(<App/>)
+      const checkboxTandC = screen.getByRole("checkbox",  {name: "Agree to Terms and Conditions"})
+      expect(checkboxTandC).not.toBeChecked()
+      const buttonPlaceOrder = screen.getByRole("button", {name: "Place your order"})
+      expect(buttonPlaceOrder).toBeDisabled()
+    })
   })
 });
