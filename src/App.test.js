@@ -96,6 +96,6 @@ describe("render App", () => {
     render(<App/>)
     const spinnerCarbonara = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
     userEvent.type(spinnerCarbonara,"3")
-    await waitFor(() => expect(spinnerCarbonara.value).toBe("3"))
+    await waitFor(() => expect(spinnerCarbonara.valueAsNumber).toBe(3))
   })
 });

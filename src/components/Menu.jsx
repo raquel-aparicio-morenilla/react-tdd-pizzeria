@@ -8,10 +8,14 @@ function MenuItem({item, itemType}) {
     const [quantity, setQuantity] = useState(0)
     const altText = item.name + " " + itemType;
 
+    const handleSpinnerChange = (ev) => {
+        setQuantity(ev.target.valueAsNumber)
+    }
+
     return <div>
         <img src={"assets/" + item.imageName} alt={altText} width={50} height={50}/>
         {item.name}
-        <input type="number" min={0} value={quantity}/>
+        <input type="number" min={0} value={quantity} aria-label={altText} onChange={handleSpinnerChange}/>
     </div>;
 }
 
