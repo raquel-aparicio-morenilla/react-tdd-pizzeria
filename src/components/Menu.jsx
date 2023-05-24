@@ -7,7 +7,7 @@ export function Menu() {
         <h1>Menu</h1>
         <h2>Pizza</h2>
         <ul>
-            {pizzaList.map(pizza => <li key={pizza}>{pizza}</li>)}
+            {pizzaList.map(pizza => <li key={pizza.name}>{pizza.name}</li>)}
         </ul>
     </>;
 }

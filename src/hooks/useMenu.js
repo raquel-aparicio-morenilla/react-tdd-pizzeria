@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
+import menu from "../mocks/menu.json"
 
 function getPizzaList() {
-    return ["Carbonara", "Barbeque"];
+    return menu.pizzas;
 }
 
 export function useMenu() {
