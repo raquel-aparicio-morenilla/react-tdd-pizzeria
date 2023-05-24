@@ -63,7 +63,7 @@ describe("render App", () => {
 
   it("render images for the 2 pizzas", () =>{
     render(<App/>)
-    const imageList = screen.getAllByRole("img");
+    const imageList = screen.getAllByRole("img", {name: /pizza/i});
     expect(imageList).toHaveLength(2)
     const altList = imageList.map(pizzaImage => pizzaImage.alt)
     expect(altList).toContain("Carbonara pizza")
@@ -76,11 +76,11 @@ describe("render App", () => {
 
   it("renders images for the dessert", () =>{
     render(<App/>)
-    const imageList= screen.getAllByRole("img")
+    const imageList= screen.getAllByRole("img", {name: /dessert/i})
     expect(imageList).toHaveLength(1)
     const altList = imageList.map(image => image.alt)
-    expect(altList).toEqual("Vanilla icecream dessert")
+    expect(altList).toEqual(["Vanilla icecream dessert"])
     const srcList= imageList.map(image => image.src)
-    expect(srcList).toEqual(expect.stringContaining("assets/VanillaIcecream.png"))
+    expect(srcList).toEqual([expect.stringContaining("assets/VanillaIcecream.png")])
   })
 });
