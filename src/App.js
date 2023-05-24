@@ -1,11 +1,15 @@
 import './App.css';
 
 function App() {
-  return (
+    const pizzaList = ["Carbonara", "Barbeque"];
+
+    return (
     <div className="App">
         <h1>Menu</h1>
         <h2>Pizza</h2>
-        Carbonara
+        <ul>
+            {pizzaList.map(pizza => <li key={pizza}>{pizza}</li>)}
+        </ul>
     </div>
   );
 }
