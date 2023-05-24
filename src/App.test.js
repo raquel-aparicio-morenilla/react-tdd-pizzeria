@@ -60,4 +60,13 @@ describe("render App", () => {
     const vanilla = dessertSection.getByText("Vanilla icecream")
     expect(vanilla).toBeInTheDocument()
   })
+
+  it("render images for the 2 pizzas", () =>{
+    render(<App/>)
+    const imageList = screen.getAllByRole("img");
+    expect(imageList).toHaveLength(2)
+    const altList = imageList.map(pizzaImage => pizzaImage.alt)
+    expect(altList).toContain("Carbonara pizza")
+    expect(altList).toContain("Barbeque pizza")
+  })
 });
