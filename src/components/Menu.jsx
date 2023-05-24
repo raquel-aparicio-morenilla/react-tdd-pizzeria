@@ -1,8 +1,11 @@
 import {useMenu} from "../hooks/useMenu";
 
-function MenuItem({item}) {
+export const pizzaType = "pizza"
+
+function MenuItem({item, itemType}) {
+    const altText = item.name + " " + itemType;
     return <div>
-        <img src={"assets/" + item.imageName} alt={item.name + " pizza"} width={50} height={50}/>
+        <img src={"assets/" + item.imageName} alt={altText} width={50} height={50}/>
         {item.name}
     </div>;
 }
@@ -14,7 +17,7 @@ export function Menu() {
         <h1>Menu</h1>
         <h2>Pizza</h2>
         {
-            pizzaList && pizzaList.map(pizza => <MenuItem key={pizza.name} item={pizza}/>)
+            pizzaList && pizzaList.map(pizza => <MenuItem key={pizza.name} item={pizza} itemType={pizzaType}/>)
         }
         <h2>Dessert</h2>
         {dessertList && dessertList.map(dessert => <div key={dessert.name}>{dessert.name}</div>)}
