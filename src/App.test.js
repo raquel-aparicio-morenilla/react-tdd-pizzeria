@@ -134,6 +134,8 @@ describe("render App", () => {
       expect(checkboxTandC).not.toBeChecked()
       const buttonPlaceOrder = screen.getByRole("button", {name: "Place your order"})
       expect(buttonPlaceOrder).toBeDisabled()
+      const orderConfirmed = screen.queryByText("Your order has been confirmed")
+      expect(orderConfirmed).not.toBeInTheDocument()
     })
 
     it("render button enabled when user checks checkbox", () => {
@@ -143,7 +145,8 @@ describe("render App", () => {
       expect(checkboxTandC).toBeChecked()
       const buttonPlaceOrder = screen.getByRole("button", {name: "Place your order"})
       expect(buttonPlaceOrder).toBeEnabled()
-
+      const orderConfirmed = screen.queryByText("Your order has been confirmed")
+      expect(orderConfirmed).not.toBeInTheDocument()
     })
 
     it("render Your order has been confirmed only when order button is clicked", async () => {
