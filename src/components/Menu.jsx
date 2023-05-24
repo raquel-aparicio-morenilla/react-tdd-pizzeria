@@ -1,5 +1,9 @@
+function getPizzaList() {
+    return ["Carbonara", "Barbeque"];
+}
+
 export function Menu() {
-    const pizzaList = ["Carbonara", "Barbeque"];
+    const pizzaList = getPizzaList();
 
     return <>
         <h1>Menu</h1>
