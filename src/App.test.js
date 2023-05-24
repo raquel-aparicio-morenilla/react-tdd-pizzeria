@@ -14,14 +14,21 @@ describe("render App", () => {
     expect(pizzaSection).toBeInTheDocument()
   })
 
-  it("render Carbonara in Pizza section", () =>{
+  it("render Carbonara in Pizza section", () => {
     render(<App/>)
     const carbonara = screen.getByText("Carbonara")
     expect(carbonara).toBeInTheDocument()
   })
 
-  it("render Barbeque in Pizza section", () =>{
+  it("render Barbeque in Pizza section", () => {
     render(<App/>)
     const barbeque = screen.getByText("Barbeque")
+  })
+
+  it("render Dessert section in Menu", () =>{
+    render(<App/>)
+    const dessertSection = screen.getByText("Dessert")
+    expect(dessertSection).toBeInTheDocument()
+
   })
 });
