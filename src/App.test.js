@@ -135,5 +135,15 @@ describe("render App", () => {
       const buttonPlaceOrder = screen.getByRole("button", {name: "Place your order"})
       expect(buttonPlaceOrder).toBeDisabled()
     })
+
+    it("render button enabled when user checks checkbox", () => {
+      render(<App/>)
+      const checkboxTandC = screen.getByRole("checkbox",{name: "Agree to Terms and Conditions"})
+      userEvent.click(checkboxTandC)
+      expect(checkboxTandC).toBeChecked()
+      const buttonPlaceOrder = screen.getByRole("button", {name: "Place your order"})
+      expect(buttonPlaceOrder).toBeEnabled()
+
+    })
   })
 });
