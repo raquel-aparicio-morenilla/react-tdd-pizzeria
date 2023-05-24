@@ -19,4 +19,9 @@ describe("render App", () => {
     const carbonara = screen.getByText("Carbonara")
     expect(carbonara).toBeInTheDocument()
   })
+
+  it("render Barbeque in Pizza section", () =>{
+    render(<App/>)
+    const barbeque = screen.getByText("Barbeque")
+  })
 });
