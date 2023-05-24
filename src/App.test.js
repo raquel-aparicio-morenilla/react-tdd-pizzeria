@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import App from './App';
 
 describe("render App", () => {
@@ -23,6 +23,7 @@ describe("render App", () => {
   it("render Barbeque in Pizza section", () => {
     render(<App/>)
     const barbeque = screen.getByText("Barbeque")
+    expect(barbeque).toBeInTheDocument()
   })
 
   it("render Dessert section in Menu", () =>{
