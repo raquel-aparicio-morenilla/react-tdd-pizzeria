@@ -97,4 +97,12 @@ describe("render App", () => {
     userEvent.type(spinnerCarbonara,"3")
     await waitFor(() => expect(spinnerCarbonara.valueAsNumber).toBe(3))
   })
+
+  it("renders price for the menu items", () => {
+    render(<App/>)
+    const priceList = screen.getAllByLabelText(/-price$/)
+    expect(priceList).toHaveLength(3)
+    const carbonaraPrice = screen.getByLabelText("Carbonara-pizza-price")
+    expect(carbonaraPrice).toHaveTextContent("15")
+  })
 });
