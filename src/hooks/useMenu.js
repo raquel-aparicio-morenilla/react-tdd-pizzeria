@@ -5,7 +5,8 @@ function parseItemList(itemList){
     return itemList.map(item => (
         {
             "name": item.name,
-            "imagePath": "assets/" + item.imageName
+            "imagePath": "assets/" + item.imageName,
+            "price": item.price
         }
     ));
 }

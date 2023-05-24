@@ -5,13 +5,13 @@ import userEvent from "@testing-library/user-event";
 jest.mock("./gateways/menuGateway", () => ({
       getPizzaList : () => (
         [
-          {name: "Carbonara", imageName: "Carbonara.png"},
-          {name: "Barbeque", imageName: "Barbeque.png"}
+          {name: "Carbonara", imageName: "Carbonara.png", price: 15},
+          {name: "Barbeque", imageName: "Barbeque.png", price: 17}
         ]
       ),
       getDessertList : () => (
           [
-           { name : "Vanilla icecream", imageName: "VanillaIcecream.png"}
+           { name : "Vanilla icecream", imageName: "VanillaIcecream.png", price: 5}
           ]
       )
     })
