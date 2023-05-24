@@ -158,5 +158,14 @@ describe("render App", () => {
       const orderConfirmed = screen.getByText("Your order has been confirmed")
       expect(orderConfirmed).toBeInTheDocument()
     })
+
+    it("render button disabled when order has been confirmed", async () => {
+      render(<App/>)
+      const checkboxTandC = screen.getByRole("checkbox", {name: "Agree to Terms and Conditions"})
+      await userEvent.click(checkboxTandC)
+      const buttonPlaceOrder = screen.getByRole("button", {name: "Place your order"})
+      await userEvent.click(buttonPlaceOrder)
+      expect(buttonPlaceOrder).toBeDisabled()
+    })
   })
 });
