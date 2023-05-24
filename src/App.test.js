@@ -10,7 +10,7 @@ jest.mock("./gateways/menuGateway", () => ({
       ),
       getDessertList : () => (
           [
-           { name : "Vanilla icecream" }
+           { name : "Vanilla icecream", imageName: "VanillaIcecream.png"}
           ]
       )
     })
@@ -72,5 +72,15 @@ describe("render App", () => {
 
     const srcList = imageList.map(pizzaImage => pizzaImage.src)
     expect(srcList).toEqual(expect.arrayContaining([expect.stringContaining("assets/Carbonara.png"), expect.stringContaining("assets/Barbeque.png")]))
+  })
+
+  it("renders images for the dessert", () =>{
+    render(<App/>)
+    const imageList= screen.getAllByRole("img")
+    expect(imageList).toHaveLength(1)
+    const altList = imageList.map(image => image.alt)
+    expect(altList).toEqual("Vanilla icecream dessert")
+    const srcList= imageList.map(image => image.src)
+    expect(srcList).toEqual(expect.stringContaining("assets/VanillaIcecream.png"))
   })
 });
