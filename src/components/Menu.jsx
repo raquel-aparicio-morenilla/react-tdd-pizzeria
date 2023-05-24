@@ -6,8 +6,8 @@ export function Menu() {
     return <>
         <h1>Menu</h1>
         <h2>Pizza</h2>
-        {pizzaList.map(pizza => <div key={pizza.name}>{pizza.name}</div>)}
+        {pizzaList && pizzaList.map(pizza => <div key={pizza.name}>{pizza.name}</div>)}
         <h2>Dessert</h2>
-        {dessertList.map(dessert => <div key={dessert.name}>{dessert.name}</div>)}
+        {dessertList && dessertList.map(dessert => <div key={dessert.name}>{dessert.name}</div>)}
     </>;
 }
