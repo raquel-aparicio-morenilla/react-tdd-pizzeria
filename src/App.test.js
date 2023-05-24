@@ -29,6 +29,11 @@ describe("render App", () => {
     render(<App/>)
     const dessertSection = screen.getByText("Dessert")
     expect(dessertSection).toBeInTheDocument()
+  })
 
+  it("render Vanilla icecream on the dessert section", () => {
+    render(<App/>)
+    const vanilla = screen.getByText("Vanilla icecream")
+    expect(vanilla).toBeInTheDocument()
   })
 });
