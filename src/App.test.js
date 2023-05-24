@@ -1,5 +1,6 @@
-import {render, screen, within} from '@testing-library/react';
+import {render, screen, waitFor, within} from '@testing-library/react';
 import App from './App';
+import userEvent from "@testing-library/user-event";
 
 jest.mock("./gateways/menuGateway", () => ({
       getPizzaList : () => (
@@ -89,5 +90,12 @@ describe("render App", () => {
     const spinnerList = screen.getAllByRole("spinbutton")
     expect(spinnerList).toHaveLength(3)
     spinnerList.forEach(spinner => expect(spinner.value).toBe("0"))
+  })
+
+  it("update spinner value with user input", async () => {
+    render(<App/>)
+    const spinnerCarbonara = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
+    userEvent.type(spinnerCarbonara,"3")
+    await waitFor(() => expect(spinnerCarbonara.value).toBe("3"))
   })
 });
