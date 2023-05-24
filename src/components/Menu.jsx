@@ -6,8 +6,6 @@ export function Menu() {
     return <>
         <h1>Menu</h1>
         <h2>Pizza</h2>
-        <ul>
-            {pizzaList.map(pizza => <li key={pizza.name}>{pizza.name}</li>)}
-        </ul>
+        {pizzaList.map(pizza => <div key={pizza.name}>{pizza.name}</div>)}
     </>;
 }
