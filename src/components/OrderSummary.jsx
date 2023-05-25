@@ -20,6 +20,11 @@ export function OrderSummary() {
     return <>
         <h1>Order Summary</h1>
         {isOrderConfirmed && <div>Your order has been confirmed</div>}
+        <p/>
+        <div>
+            Empty cart
+        </div>
+
         <div>
             <button disabled={!isCheckboxChecked || isOrderConfirmed} onClick={handleButtonClick}>Place your order</button>
         </div>
