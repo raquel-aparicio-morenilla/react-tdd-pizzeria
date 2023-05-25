@@ -4,16 +4,15 @@ import {OrderSummary} from "./components/OrderSummary";
 import {useState} from "react";
 
 function App() {
-    const [shoppingCart, setShoppingCart] = useState([])
+    const [shoppingCartMap, setShoppingCartMap] = useState(new Map())
 
     const updateShoppingCart = ({item, itemCount}) => {
-        const newShoppingCart = [
-            ...shoppingCart,
-            {item,itemCount}
-        ]
-        setShoppingCart(newShoppingCart)
+        const newShoppingCartMap = new Map(shoppingCartMap)
+        newShoppingCartMap.set(item,itemCount)
+        setShoppingCartMap(newShoppingCartMap)
     }
 
+    const shoppingCart = [...shoppingCartMap].map(([mapKey, mapValue]) => ({ item: mapKey, itemCount: mapValue }))
 
     return (
     <div className="App">
