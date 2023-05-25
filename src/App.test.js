@@ -167,5 +167,11 @@ describe("render App", () => {
       await userEvent.click(buttonPlaceOrder)
       expect(buttonPlaceOrder).toBeDisabled()
     })
+
+    it("renders Empty cart on Order summary when user has not selected any item yet", () => {
+      render(<App/>)
+      const emptyCart = screen.getByText("Empty cart")
+      expect(emptyCart).toBeInTheDocument()
+    })
   })
 });
