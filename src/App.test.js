@@ -173,5 +173,14 @@ describe("render App", () => {
       const emptyCart = screen.getByText("Empty cart")
       expect(emptyCart).toBeInTheDocument()
     })
+
+    it("do not render empty cart on Order summary when user has selected any item", () => {
+      render(<App/>)
+      const carbonaraSpinner = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
+      userEvent.type(carbonaraSpinner,"3")
+      expect(carbonaraSpinner.valueAsNumber).toBe(3)
+      const emptyCart = screen.queryByText("Empty cart")
+      expect(emptyCart).not.toBeInTheDocument()
+    })
   })
 });
