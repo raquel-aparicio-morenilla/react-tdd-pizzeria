@@ -189,6 +189,10 @@ describe("render App", () => {
       userEvent.type(carbonaraSpinner,"3")
       expect(carbonaraSpinner.valueAsNumber).toBe(3)
       const summary = screen.getByLabelText("orderSummarySection")
+
+      const itemsOnSummary = within(summary).getAllByLabelText(/-shopping-cart$/)
+      expect(itemsOnSummary).toHaveLength(1)
+
       const carbonaraOnSummary = within(summary).getByLabelText("Carbonara-shopping-cart")
       expect(carbonaraOnSummary).toBeInTheDocument()
       expect(within(carbonaraOnSummary).getByLabelText("itemName")).toHaveTextContent("Carbonara")
@@ -203,11 +207,42 @@ describe("render App", () => {
       const barbequeSpinner = screen.getByRole("spinbutton", {name: "Barbeque pizza"})
       userEvent.type(carbonaraSpinner, "1")
       userEvent.type(barbequeSpinner,"2")
+
+      const summary = screen.getByLabelText("orderSummarySection")
+      const itemsOnSummary = within(summary).getAllByLabelText(/-shopping-cart$/)
+      expect(itemsOnSummary).toHaveLength(2)
+
       const carbonaraOnSummary = screen.getByLabelText("Carbonara-shopping-cart")
       expect(within(carbonaraOnSummary).getByLabelText("itemName")).toHaveTextContent("Carbonara")
       expect(within(carbonaraOnSummary).getByLabelText("itemCount")).toHaveTextContent(1)
       expect(within(carbonaraOnSummary).getByLabelText("itemPrice")).toHaveTextContent(15)
       expect(within(carbonaraOnSummary).getByLabelText("itemTotalPrice")).toHaveTextContent(15)
+
+      const barbequeOnSummary = screen.getByLabelText("Barbeque-shopping-cart")
+      expect(within(barbequeOnSummary).getByLabelText("itemName")).toHaveTextContent("Barbeque")
+      expect(within(barbequeOnSummary).getByLabelText("itemCount")).toHaveTextContent(2)
+      expect(within(barbequeOnSummary).getByLabelText("itemPrice")).toHaveTextContent(17)
+      expect(within(barbequeOnSummary).getByLabelText("itemTotalPrice")).toHaveTextContent(34)
+    })
+
+    it("update Carbonara count, when Carbonara and Barbeque are on Order summary", () => {
+      render(<App/>)
+      const carbonaraSpinner = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
+      const barbequeSpinner = screen.getByRole("spinbutton", {name: "Barbeque pizza"})
+      userEvent.type(carbonaraSpinner, "1")
+      userEvent.type(barbequeSpinner,"2")
+      userEvent.clear(carbonaraSpinner)
+      userEvent.type(carbonaraSpinner, "2")
+
+      const summary = screen.getByLabelText("orderSummarySection")
+      const itemsOnSummary = within(summary).getAllByLabelText(/-shopping-cart$/)
+      expect(itemsOnSummary).toHaveLength(2)
+
+      const carbonaraOnSummary = screen.getByLabelText("Carbonara-shopping-cart")
+      expect(within(carbonaraOnSummary).getByLabelText("itemName")).toHaveTextContent("Carbonara")
+      expect(within(carbonaraOnSummary).getByLabelText("itemCount")).toHaveTextContent(2)
+      expect(within(carbonaraOnSummary).getByLabelText("itemPrice")).toHaveTextContent(15)
+      expect(within(carbonaraOnSummary).getByLabelText("itemTotalPrice")).toHaveTextContent(30)
 
       const barbequeOnSummary = screen.getByLabelText("Barbeque-shopping-cart")
       expect(within(barbequeOnSummary).getByLabelText("itemName")).toHaveTextContent("Barbeque")
