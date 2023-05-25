@@ -250,5 +250,12 @@ describe("render App", () => {
       expect(within(barbequeOnSummary).getByLabelText("itemPrice")).toHaveTextContent(17)
       expect(within(barbequeOnSummary).getByLabelText("itemTotalPrice")).toHaveTextContent(34)
     })
+
+    it("when spinbox is cleared, set 0 as value", () => {
+      render(<App/>)
+      const carbonaraSpinner = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
+      userEvent.clear(carbonaraSpinner)
+      expect(carbonaraSpinner.valueAsNumber).toBe(0)
+    })
   })
 });
