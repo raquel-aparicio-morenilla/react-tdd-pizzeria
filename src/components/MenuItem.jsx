@@ -8,7 +8,7 @@ export function MenuItem({item, itemType, updateShoppingCart}) {
     const altText = item.name + " " + itemType;
 
     const handleSpinnerChange = (ev) => {
-        const newQuantity = ev.target.valueAsNumber
+        const newQuantity = parseInt(ev.target.valueAsNumber) || 0
         setQuantity(newQuantity)
         updateShoppingCart({item, itemCount: newQuantity})
     }
