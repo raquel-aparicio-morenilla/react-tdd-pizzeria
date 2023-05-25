@@ -8,7 +8,7 @@ function App() {
 
     const updateShoppingCart = ({item, itemCount}) => {
         const newShoppingCartMap = new Map(shoppingCartMap)
-        newShoppingCartMap.set(item,itemCount)
+        itemCount == 0 ? newShoppingCartMap.delete(item) : newShoppingCartMap.set(item,itemCount)
         setShoppingCartMap(newShoppingCartMap)
     }
 
