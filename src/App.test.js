@@ -251,11 +251,33 @@ describe("render App", () => {
       expect(within(barbequeOnSummary).getByLabelText("itemTotalPrice")).toHaveTextContent(34)
     })
 
-    it("when spinbox is cleared, set 0 as value", () => {
+    it("when spinbutton is cleared, set 0 as value", () => {
       render(<App/>)
       const carbonaraSpinner = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
       userEvent.clear(carbonaraSpinner)
       expect(carbonaraSpinner.valueAsNumber).toBe(0)
+    })
+
+    it("when spinbutton is set to 0, remove item from shopping cart", () => {
+      render(<App/>)
+      const carbonaraSpinner = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
+      const barbequeSpinner = screen.getByRole("spinbutton", {name: "Barbeque pizza"})
+      userEvent.type(carbonaraSpinner, "1")
+      userEvent.type(barbequeSpinner, "1")
+      userEvent.clear(carbonaraSpinner)
+
+      const summary = screen.getByLabelText("orderSummarySection")
+      const itemsOnSummary = within(summary).getAllByLabelText(/-shopping-cart$/)
+      expect(itemsOnSummary).toHaveLength(1)
+
+      const carbonaraOnSummary = screen.queryByLabelText("Carbonara-shopping-cart")
+      expect(carbonaraOnSummary).not.toBeInTheDocument()
+
+      userEvent.clear(barbequeSpinner)
+      const itemsOnSummary2 = within(summary).queryAllByLabelText(/-shopping-cart$/)
+      expect(itemsOnSummary2).toHaveLength(0)
+      const barbequeOnSummary = screen.queryByLabelText("Barbeque-shopping-cart")
+      expect(barbequeOnSummary).not.toBeInTheDocument()
     })
   })
 });
