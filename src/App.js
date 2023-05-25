@@ -6,9 +6,18 @@ import {useState} from "react";
 function App() {
     const [shoppingCart, setShoppingCart] = useState([])
 
+    const updateShoppingCart = ({item, itemCount}) => {
+        const newShoppingCart = [
+            ...shoppingCart,
+            {item,itemCount}
+        ]
+        setShoppingCart(newShoppingCart)
+    }
+
+
     return (
     <div className="App">
-        <Menu setShoppingCart={setShoppingCart}/>
+        <Menu updateShoppingCart={updateShoppingCart}/>
         <br/>
         <OrderSummary shoppingCart={shoppingCart}/>
     </div>

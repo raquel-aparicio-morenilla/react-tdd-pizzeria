@@ -25,7 +25,7 @@ export function OrderSummary({shoppingCart}) {
         <div>
             {isEmptyCart && "Empty cart"}
             {!isEmptyCart && shoppingCart.map(shoppingCartItem =>
-                    <div key={shoppingCartItem.item.name} aria-label={shoppingCartItem.item.name}>
+                    <div key={shoppingCartItem.item.name} aria-label={shoppingCartItem.item.name + "-shopping-cart"}>
                         <span aria-label={"itemName"}>{shoppingCartItem.item.name}</span>
                         <span aria-label={"itemCount"} style={{paddingLeft:20}}>x{shoppingCartItem.itemCount}</span>
                         <span aria-label={"itemPrice"} style={{paddingLeft:100}}>Item price {shoppingCartItem.item.price}</span>
