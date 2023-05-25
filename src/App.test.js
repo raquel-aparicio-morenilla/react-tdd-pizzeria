@@ -182,5 +182,19 @@ describe("render App", () => {
       const emptyCart = screen.queryByText("Empty cart")
       expect(emptyCart).not.toBeInTheDocument()
     })
+
+    it("render Carbonara on Order summary when user updates Carbonara spinner", async () => {
+      render(<App/>)
+      const carbonaraSpinner = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
+      userEvent.type(carbonaraSpinner,"3")
+      expect(carbonaraSpinner.valueAsNumber).toBe(3)
+      const summary = screen.getByLabelText("orderSummarySection")
+      const carbonaraOnSummary = within(summary).getByLabelText("Carbonara")
+      expect(carbonaraOnSummary).toBeInTheDocument()
+      expect(within(carbonaraOnSummary).getByLabelText("itemName")).toHaveTextContent("Carbonara")
+      expect(within(carbonaraOnSummary).getByLabelText("itemCount")).toHaveTextContent(3)
+      expect(within(carbonaraOnSummary).getByLabelText("itemPrice")).toHaveTextContent(15)
+      expect(within(carbonaraOnSummary).getByLabelText("itemTotalPrice")).toHaveTextContent(45)
+    })
   })
 });
