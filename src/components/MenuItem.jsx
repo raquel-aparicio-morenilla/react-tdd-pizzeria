@@ -1,9 +1,12 @@
 import {useState} from "react";
+import {useShoppingCartContext} from "../contexts/ShoppingCartContext";
 
 export const pizzaType = "pizza"
 export const dessertType = "dessert"
 
-export function MenuItem({item, itemType, updateShoppingCart}) {
+export function MenuItem({item, itemType}) {
+    const { updateShoppingCart } = useShoppingCartContext()
+
     const [quantity, setQuantity] = useState(0)
     const altText = item.name + " " + itemType;
 

@@ -1,9 +1,12 @@
 import {useState} from "react";
+import {useShoppingCartContext} from "../contexts/ShoppingCartContext";
 
 const orderStatePendingToConfirm = 'pendingToConfirm'
 const orderStateConfirmed = 'confirmed'
 
-export function OrderSummary({shoppingCart}) {
+export function OrderSummary() {
+    const { shoppingCart } = useShoppingCartContext()
+
     const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
     const [orderState, setOrderState] = useState(orderStatePendingToConfirm)
 
