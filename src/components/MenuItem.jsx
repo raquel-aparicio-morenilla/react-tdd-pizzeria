@@ -3,12 +3,14 @@ import {useState} from "react";
 export const pizzaType = "pizza"
 export const dessertType = "dessert"
 
-export function MenuItem({item, itemType}) {
+export function MenuItem({item, itemType, setShoppingCart}) {
     const [quantity, setQuantity] = useState(0)
     const altText = item.name + " " + itemType;
 
     const handleSpinnerChange = (ev) => {
-        setQuantity(ev.target.valueAsNumber)
+        const newQuantity = ev.target.valueAsNumber
+        setQuantity(newQuantity)
+        setShoppingCart([{item, itemCount: newQuantity}])
     }
 
     return <div>

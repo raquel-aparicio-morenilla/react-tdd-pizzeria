@@ -3,7 +3,7 @@ import {useState} from "react";
 const orderStatePendingToConfirm = 'pendingToConfirm'
 const orderStateConfirmed = 'confirmed'
 
-export function OrderSummary() {
+export function OrderSummary({shoppingCart}) {
     const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
     const [orderState, setOrderState] = useState(orderStatePendingToConfirm)
 
@@ -16,13 +16,14 @@ export function OrderSummary() {
     }
 
     const isOrderConfirmed = orderState === orderStateConfirmed;
+    const isEmptyCart = shoppingCart === undefined || shoppingCart.length == 0;
 
     return <>
         <h1>Order Summary</h1>
         {isOrderConfirmed && <div>Your order has been confirmed</div>}
         <p/>
         <div>
-            Empty cart
+            {isEmptyCart && "Empty cart"}
         </div>
 
         <div>
