@@ -1,3 +1,7 @@
 export function retrievePizzaList() {
-    return [];
+    return ["Carbonara", "Cheesy"];
+}
+
+export function retrieveDessertList() {
+    return ["Chocolate cookie"];
 }

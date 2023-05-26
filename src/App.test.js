@@ -7,7 +7,12 @@ jest.mock("./gateways/menuGateway", () => ({
                 "Carbonara",
                 "Barbeque"
             ]
-        )
+        ),
+    retrieveDessertList : () => (
+        [
+            "Vanilla icecream"
+        ]
+    )
     })
 );
 
@@ -36,4 +41,17 @@ describe("render Application", () => {
     const barbeque = screen.getByText("Barbeque")
     expect(barbeque).toBeInTheDocument()
   })
+
+    it("render Dessert section", () => {
+        render(<App/>)
+        const menu = screen.getByLabelText("Menu");
+        const dessert = within(menu).getByText("Dessert")
+        expect(dessert).toBeInTheDocument()
+    })
+
+    it("render Vanilla icecream", () => {
+        render(<App/>)
+        const icecream = screen.getByText("Vanilla icecream")
+        expect(icecream).toBeInTheDocument()
+    })
 })
