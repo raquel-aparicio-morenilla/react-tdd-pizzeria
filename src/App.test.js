@@ -279,5 +279,18 @@ describe("render App", () => {
       const barbequeOnSummary = screen.queryByLabelText("Barbeque-shopping-cart")
       expect(barbequeOnSummary).not.toBeInTheDocument()
     })
+
+    it("render order total on summary only when there are items on the shopping cart", () => {
+      render(<App/>)
+      const summary = screen.getByLabelText("orderSummarySection")
+      const total = within(summary).queryByText(/Order total/)
+      expect(total).not.toBeInTheDocument()
+
+      const carbonaraSpinner = screen.getByRole("spinbutton", {name: "Carbonara pizza"})
+      const barbequeSpinner = screen.getByRole("spinbutton", {name: "Barbeque pizza"})
+      userEvent.type(carbonaraSpinner, "1")
+      userEvent.type(barbequeSpinner, "1")
+      expect(within(summary).getByLabelText("orderPrice")).toHaveTextContent(32)
+    })
   })
 });
