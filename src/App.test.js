@@ -1,6 +1,15 @@
 import {render, screen, within} from '@testing-library/react';
 import App from './App';
 
+jest.mock("./gateways/menuGateway", () => ({
+    retrievePizzaList : () => (
+            [
+                "Carbonara",
+                "Barbeque"
+            ]
+        )
+    })
+);
 
 describe("render Application", () => {
   it('renders Menu', () => {
