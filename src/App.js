@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import {usePizzaList} from "./hooks/usePizzaList";
 
 function App() {
-    const pizzaList = ["Carbonara", "Barbeque"];
+    const pizzaList = usePizzaList();
 
-  return (
+    return (
     <div className="App">
         <div aria-label={"Menu"}>
             <h1>Menu</h1>
