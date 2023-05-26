@@ -9,4 +9,9 @@ describe("render Application", () => {
     expect(menu).toBeInTheDocument();
   });
 
+  it("render Pizza section", () => {
+    render(<App/>)
+    const pizza = screen.getByText("Pizza")
+    expect(pizza).toBeInTheDocument()
+  })
 })
