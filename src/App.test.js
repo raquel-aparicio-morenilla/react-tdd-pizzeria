@@ -4,13 +4,13 @@ import App from './App';
 jest.mock("./gateways/menuGateway", () => ({
     retrievePizzaList : () => (
             [
-                "Carbonara",
-                "Barbeque"
+                {name:"Carbonara"},
+                {name:"Barbeque"}
             ]
         ),
     retrieveDessertList : () => (
         [
-            "Vanilla icecream"
+            {name:"Vanilla icecream"}
         ]
     )
     })
@@ -54,4 +54,25 @@ describe("render Application", () => {
         const icecream = screen.getByText("Vanilla icecream")
         expect(icecream).toBeInTheDocument()
     })
+
+    it("render images for each of the menu items", () => {
+        render(<App/>)
+        const imageList = screen.getAllByRole("img");
+        expect(imageList).toHaveLength(3)
+        imageList.forEach(
+            image => expect(image).toHaveAttribute("src", expect.stringMatching(/^assets\//))
+        )
+    })
+    it("render images for the dessert item", () => {
+        render(<App/>)
+        const imageList = screen.getAllByRole("img",{name: "Deliciouss Vanilla icecream dessert"});
+        expect(imageList).toHaveLength(1)
+        imageList.forEach(
+            image => expect(image).toHaveAttribute("src", expect.stringMatching(/^assets\//))
+        )
+    })
+    it('should render the price for each menu item', function () {
+        render(<App/>)
+
+    });
 })
