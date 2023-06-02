@@ -1,0 +1,31 @@
+{
+  "pizzas" : [
+    {
+      "name": "Carbonara",
+      "imageName": "carbonaraPizza.jpg",
+      "price": 15
+    },
+    {
+      "name": "Barbeque",
+      "imageName": "barbequePizza.jpg",
+      "price": 16
+    },
+    {
+      "name": "Cheesy",
+      "imageName": "cheesyPizza.jpg",
+      "price": 17
+    }
+  ],
+  "desserts" : [
+    {
+      "name" : "Vanilla icecream",
+      "imageName": "vanillaIcecream.jpg",
+      "price": 5
+    },
+    {
+      "name" : "Chocolate cookie",
+      "imageName": "chocolateCookie.jpg",
+      "price": 6
+    }
+  ]
+}
