@@ -1,7 +1,9 @@
+import menu from "../mocks/menu.json"
+
 export function retrievePizzaList() {
-    return ["Carbonara", "Cheesy"];
+    return menu.pizzas;
 }
 
 export function retrieveDessertList() {
-    return ["Chocolate cookie"];
+    return menu.desserts;
 }
