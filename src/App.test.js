@@ -100,4 +100,21 @@ describe("render Application", () => {
         userEvent.clear(spinbutton)
         await waitFor(() => expect(spinbutton.valueAsNumber).toBe(0));
     });
+
+
+
+    describe("render Order Summary", () =>{
+        it("render Summary", () => {
+            render(<App/>)
+            const summary = screen.getByText("Order Summary")
+            expect(summary).toBeInTheDocument()
+        })
+
+        it("renders Empty cart on Order summary when user has not selected any item yet", () => {
+            render(<App/>)
+            const emptyCart = screen.getByText("Empty cart")
+            expect(emptyCart).toBeInTheDocument()
+        })
+
+    })
 })
