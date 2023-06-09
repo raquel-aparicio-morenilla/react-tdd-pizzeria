@@ -8,7 +8,7 @@ function App() {
 
     return (
     <div className="App">
-        <Menu/>
+        <Menu setShoppingCart={setShoppingCart}/>
         <br/>
         <OrderSummary shoppingCart={shoppingCart}/>
     </div>

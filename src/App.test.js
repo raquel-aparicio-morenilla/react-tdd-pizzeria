@@ -5,13 +5,13 @@ import userEvent from "@testing-library/user-event";
 jest.mock("./gateways/menuGateway", () => ({
     retrievePizzaList : () => (
             [
-                {name:"Carbonara"},
-                {name:"Barbeque"}
+                {name:"Carbonara", price: 15},
+                {name:"Barbeque", price : 16}
             ]
         ),
     retrieveDessertList : () => (
         [
-            {name:"Vanilla icecream"}
+            {name:"Vanilla icecream", price: 5}
         ]
     )
     })
@@ -116,5 +116,34 @@ describe("render Application", () => {
             expect(emptyCart).toBeInTheDocument()
         })
 
+        it("do not render empty cart on Order summary when user has selected any item", () => {
+            render(<App/>)
+            const carbonaraSpinner = screen.getByTestId("Carbonara-spinbutton")
+            userEvent.type(carbonaraSpinner,"3")
+            expect(carbonaraSpinner.valueAsNumber).toBe(3)
+            const emptyCart = screen.queryByText("Empty cart")
+            expect(emptyCart).not.toBeInTheDocument()
+
+            const carbonara = screen.getByLabelText("itemName")
+            expect(carbonara).toBeInTheDocument()
+            expect(carbonara).toHaveTextContent("Carbonara")
+            const carbonaraItemCount = screen.getByLabelText("itemCount")
+            expect(carbonaraItemCount).toHaveTextContent(3)
+            const carbonaraPrice = screen.getByLabelText("itemPrice")
+            expect(carbonaraPrice).toHaveTextContent(15)
+        })
+
+        it("remove element from cart on Order summary when user enters count 0 after having entered a positive quantity", () => {
+            render(<App/>)
+            const carbonaraSpinner = screen.getByTestId("Carbonara-spinbutton")
+            userEvent.type(carbonaraSpinner, "3")
+            expect(carbonaraSpinner.valueAsNumber).toBe(3)
+            userEvent.clear(carbonaraSpinner)
+            //userEvent.type(carbonaraSpinner, "0")
+            expect(carbonaraSpinner.valueAsNumber).toBe(0)
+
+            const emptyCart = screen.getByText("Empty cart")
+            expect(emptyCart).toBeInTheDocument()
+        })
     })
 })

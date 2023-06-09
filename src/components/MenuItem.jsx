@@ -3,12 +3,13 @@ import {useState} from "react";
 export const pizzaType ="pizza"
 export const dessertType = "dessert"
 
-export function MenuItem({item, itemType}) {
+export function MenuItem({item, itemType, setShoppingCart}) {
     const [quantity, setQuantity] = useState(0)
 
     const handleChange = (ev) => {
         const newQuantity = parseInt(ev.target.valueAsNumber) || 0
         setQuantity(newQuantity)
+        setShoppingCart(newQuantity == 0? [] : [{item:{name:item.name, price:item.price}, itemCount: newQuantity}])
     }
 
     return <div>
