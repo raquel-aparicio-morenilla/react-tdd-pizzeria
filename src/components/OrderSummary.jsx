@@ -1,5 +1,9 @@
-export function OrderSummary({shoppingCart}) {
-    const isEmptyCart = shoppingCart === undefined || shoppingCart.length == 0;
+import {useShoppingCartContext} from "../context/ShoppingCartContext";
+
+export function OrderSummary() {
+    const { shoppingCart } = useShoppingCartContext()
+
+    const isEmptyCart = shoppingCart === undefined || shoppingCart.length === 0;
     //{item: {name, price}, itemCount}
     return <div aria-label={"orderSummarySection"}>
         <h1>Order Summary</h1>

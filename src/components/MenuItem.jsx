@@ -1,15 +1,18 @@
 import {useState} from "react";
+import {useShoppingCartContext} from "../context/ShoppingCartContext";
 
 export const pizzaType ="pizza"
 export const dessertType = "dessert"
 
-export function MenuItem({item, itemType, setShoppingCart}) {
+export function MenuItem({item, itemType}) {
+    const { updateShoppingCart } = useShoppingCartContext()
+
     const [quantity, setQuantity] = useState(0)
 
     const handleChange = (ev) => {
         const newQuantity = parseInt(ev.target.valueAsNumber) || 0
         setQuantity(newQuantity)
-        setShoppingCart(newQuantity == 0? [] : [{item:{name:item.name, price:item.price}, itemCount: newQuantity}])
+        updateShoppingCart({item, itemCount: newQuantity})
     }
 
     return <div>

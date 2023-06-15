@@ -75,6 +75,7 @@ describe("render Application", () => {
     it('should render the price for each menu item', function () {
         render(<App/>)
         const priceList = screen.getAllByLabelText("price")
+        expect(priceList).toHaveLength(3)
     });
 
   it("should render spinbuttons on each menu item", ()=> {
@@ -144,6 +145,20 @@ describe("render Application", () => {
 
             const emptyCart = screen.getByText("Empty cart")
             expect(emptyCart).toBeInTheDocument()
+        })
+
+        it("render two element from cart on Order summary", () => {
+            render(<App/>)
+            const carbonaraSpinner = screen.getByTestId("Carbonara-spinbutton")
+            userEvent.type(carbonaraSpinner, "3")
+            expect(carbonaraSpinner.valueAsNumber).toBe(3)
+            //{name:"Barbeque", price : 16}
+            const barbequeSpinner = screen.getByTestId("Barbeque-spinbutton")
+            userEvent.type(barbequeSpinner, "1")
+            expect(barbequeSpinner.valueAsNumber).toBe(1)
+
+            const shoppingCartItems = screen.getAllByLabelText("itemName")
+            expect(shoppingCartItems).toHaveLength(2)
         })
     })
 })
